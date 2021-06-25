@@ -10,7 +10,7 @@ config = ler_json('config.json')
 
 token = config['token']
 
-bot = commands.Bot(command_prefix = '>', case_insensitivite = True)
+bot = commands.Bot(command_prefix = '/', case_insensitivite = True)
 
 @bot.event
 async def on_ready():
@@ -18,7 +18,7 @@ async def on_ready():
 
 @bot.event
 async def on_message(msg):
-    if msg.author == bot.user:
+    if (msg.author == bot.user):
         return
         
     '''
@@ -48,10 +48,8 @@ async def on_member_join(member):
 async def ola(ctx):
     await ctx.send(f'Ola, {ctx.author}')
 
+@bot.command()
 async def dado(ctx, numero):
     await ctx.send(numero)
 
-
-
 bot.run(token)
-
