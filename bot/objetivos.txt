@@ -1,0 +1,13 @@
+Objetivos do bot do discord:
+
+    * Sorteio:
+        > Sorteio de grupos
+            _ quantidade de grupos que quer
+            ou/e
+            _ quantidade de membros
+
+            : Parâmetros de divisão para o sorteio
+                ' Cargo
+                ' Canal de voz
+                ' Todos os membros
+                

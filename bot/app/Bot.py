@@ -10,17 +10,15 @@ config = ler_json('config.json')
 
 token = config['token']
 
-client = discord.Client()
+bot = commands.Bot(command_prefix = '>', case_insensitivite = True)
 
-comando = commands.Bot(command_prefix = '>', case_insensitivite = True)
-
-@client.event
+@bot.event
 async def on_ready():
     print('Logamo nessa porra!')
 
-@client.event
+@bot.event
 async def on_message(msg):
-    if msg.author == client.user:
+    if msg.author == bot.user:
         return
         
     '''
@@ -38,20 +36,22 @@ async def on_message(msg):
         vc = msg.author
         await vc.move_to(None)
 
-@client.event
+    await bot.process_commands(msg)
+
+@bot.event
 async def on_member_join(member):
     for channel in member.server.channels:
         if channel.name == 'testando-o-bot':
-            await client.send_message(channel, 'Message to send when member joins')
+            await bot.send_message(channel, 'Message to send when member joins')
 
-@comando.command()
+@bot.command()
 async def ola(ctx):
     await ctx.send(f'Ola, {ctx.author}')
 
-@comando.command()
 async def dado(ctx, numero):
     await ctx.send(numero)
 
 
-client.run(token)
+
+bot.run(token)
 
