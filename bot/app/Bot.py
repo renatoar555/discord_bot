@@ -1,5 +1,14 @@
 import discord
+import json
 from discord.ext import commands
+
+def ler_json(arq):
+    with open(arq, 'r', encoding='utf8') as f:
+        return json.load(f)
+
+config = ler_json('config.json')
+
+token = config['token']
 
 client = discord.Client()
 
@@ -44,5 +53,5 @@ async def dado(ctx, numero):
     await ctx.send(numero)
 
 
-client.run('ODU3MzA1MjQ1MjI2MjM3OTUy.YNNpug.XIGUhHcA6TUZCJuoDZfeYLuV26c')
+client.run(token)
 
