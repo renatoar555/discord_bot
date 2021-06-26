@@ -38,18 +38,30 @@ async def on_message(msg):
 
     await bot.process_commands(msg)
 
-@bot.event
-async def on_member_join(member):
-    for channel in member.server.channels:
-        if channel.name == 'testando-o-bot':
-            await bot.send_message(channel, 'Message to send when member joins')
-
 @bot.command()
 async def ola(ctx):
-    await ctx.send(f'Ola, {ctx.author}')
+    return await ctx.send(f'Ola, {ctx.author}')
 
 @bot.command()
 async def dado(ctx, numero):
-    await ctx.send(numero)
+    return await ctx.send(numero)
+
+@bot.command()
+async def sorteio(ctx, um, dois):
+    param_num_pessoas = '*'
+    param_num_grupos = '_'
+    num_pessoas = 0
+    num_grupos = 0
+    if (um != None and um.startswith(param_num_pessoas)):
+        num_pessoas = int(um[1:])
+    elif (um != None and um.startswith(param_num_grupos)):
+        num_grupos = int(um[1:])
+    
+    if (dois != None and dois.startswith(param_num_pessoas)):
+        num_pessoas = int(dois[1:])
+    elif (dois != None and dois.startswith(param_num_grupos)):
+        num_grupos = int(dois[1:])
+
+    return await ctx.send(f'Número de pessoas: {num_pessoas}, e número de grupos {num_grupos}')
 
 bot.run(token)
